@@ -42,3 +42,22 @@ MorseDictionary = {
     "0": "_____",
 }
 
+
+def morseconverter(string: str) -> str:
+    """
+    Converts a string into another string in Morse Code
+    :return: Text in Morse Code
+    :param string: Text to be converted
+    """
+    morsestring = ""
+    morsearray = []
+    for char in string:
+        upperchar = char.upper()
+        try:
+            morsearray.append(MorseDictionary[upperchar])
+        except KeyError:
+            morsearray.append("?")
+
+    morsestring = "".join(morsearray)
+    return morsestring
+
