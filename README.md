@@ -14,7 +14,7 @@ Use /convert/ route passing "text" parameter to return a string converted to Mor
 ```
 {
   "result": {
-    "morse": "__ ___ ._. ... .",
+    "morse": "-- --- ·-· ··· ·",
     "original": "morse"
   }
 }
