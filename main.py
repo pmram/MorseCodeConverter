@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from errorHandling import InvalidUsage
-from morseDictionary import MorseDictionary, morseconverter
+from morseDictionary import MorseDictionary, morse_converter
 
 app = Flask(__name__)
 
@@ -13,11 +13,13 @@ def hello():
 @app.route("/convert/")
 def convert():
     string = request.args.get('text')
+    separator = request.args.get('separator')
+    error_char = request.args.get('error_char')
     if string is None:
         raise InvalidUsage('This view is gone', status_code=410)
     response = {"result": {
         "original": string,
-        "morse": morseconverter(string)
+        "morse": morse_converter(string, separator, error_char)
     }}
     return response
 
