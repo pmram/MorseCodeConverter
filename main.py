@@ -10,13 +10,13 @@ def hello():
     return MorseDictionary
 
 
-@app.route("/convert/")
-def convert():
+@app.route("/convert")
+def get_morse_code():
     string = request.args.get('text')
     separator = request.args.get('separator')
     error_char = request.args.get('error_char')
     if string is None:
-        raise InvalidUsage('This view is gone', status_code=410)
+        raise InvalidUsage('Missing parameter', status_code=400)
     response = {"result": {
         "original": string,
         "morse": morse_converter(string, separator, error_char)
