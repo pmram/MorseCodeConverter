@@ -43,21 +43,25 @@ MorseDictionary = {
 }
 
 
-def morseconverter(string: str) -> str:
+def morse_converter(
+        text: str,
+        separator: str = "",
+        missing_char: str = "$"
+) -> str:
     """
-    Converts a string into another string in Morse Code
-    :return: Text in Morse Code
-    :param string: Text to be converted
+    Converts a text string into a Morse Code equivalent string.
+    :param missing_char: String to replace the character where no correspondence was found
+    :param separator: String to separate each Morse Code character
+    :param text: String to be converted
+    :return: String converted to Morse Code
     """
-    morsestring = ""
-    morsearray = []
-    for char in string:
-        upperchar = char.upper()
+    morse_array = []
+    for char in text:
+        upper_char = char.upper()
         try:
-            morsearray.append(MorseDictionary[upperchar])
+            morse_array.append(MorseDictionary[upper_char])
         except KeyError:
-            morsearray.append("?")
+            morse_array.append(missing_char)
 
-    morsestring = "".join(morsearray)
-    return morsestring
-
+    morse_string = separator.join(morse_array)
+    return morse_string
